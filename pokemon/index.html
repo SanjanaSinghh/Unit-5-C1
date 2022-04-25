@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li{
+            width: 25%;
+            font-size: 48px;
+            border:2px solid black;
+            margin-left: 10%;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div id="pokemon">
+    <table>
+        <tr>
+            <th>Pokemons</th>
+        </tr>
+        <tr><td>Abomasnow</td></tr>
+        <tr><td>Abra</td></tr>
+        <tr><td>Absol</td></tr>
+        <tr><td>Accelgor</td></tr>
+        <tr><td>Aegislash</td></tr>
+        <tr><td>Aerodactyl</td></tr>
+        <tr><td>Aggron</td></tr>
+        <tr><td>Aipom</td></tr>
+        <tr><td>Alakazam</td></tr>
+        <tr><td>Alcremie</td></tr>
+        <tr><td>Alomomola</td></tr>
+        <tr><td>Altaria</td></tr>
+        <tr><td>Amaura</td></tr>
+        <tr><td>Ambipom</td></tr>
+        <tr><td>Amoonguss</td></tr>
+        <tr><td>Ampharos</td></tr>
+        <tr><td>Anorith</td></tr>
+        <tr><td>Appletun</td></tr>
+        <tr><td>Applin</td></tr>
+        <tr><td>Araquanid</td></tr>
+    </table>
+    </div> -->
+    <div id="pokemon">
+        <h1 style="margin-left: 180px;font-size: 60px;">Pokemons</h1>
+    </div>
+    <ol id="san"></ol>
+    <input type="text" placeholder="Search..">
+
+    
+</body>
+<script>
+    if(JSON.parse(localStorage.getItem('userdata'))==null){
+        console.log('fetch request')
+        var userdata = fetch('https://pokeapi.co/api/v2/pokemon')
+        userdata.then((res)=>res.json()).then((res)=>{
+
+   var userdata = res.results
+   localStorage.setItem('userdata',JSON.stringify(userdata))
+   userdata.forEach(e => {
+       li = document.createElement('li')
+       li.innerText = e.name
+       document.getElementById('san').append(li)
+   });
+        })
+    }
+    else{
+        console.log('localStorage')
+        userdata = JSON.parse(localStorage.getItem('userdata'))
+        userdata.forEach(e =>{
+            li = document.createElement('li')
+            li.innerText = e.name
+            document.getElementById('san').append(li)
+        });
+
+    }
+
+
+    
+</script>
+</html>
